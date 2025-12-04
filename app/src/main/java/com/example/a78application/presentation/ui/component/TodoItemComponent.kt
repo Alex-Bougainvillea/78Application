@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.a78application.domain.model.TodoItem
@@ -34,7 +36,10 @@ fun TodoItemComponent(
         ) {
             Checkbox(
                 checked = todo.isCompleted,
-                onCheckedChange = onCheckedChange
+                onCheckedChange = onCheckedChange,
+                modifier = Modifier.semantics {
+                    contentDescription = "Toggle task ${todo.id}"
+                }
             )
             Column(modifier = Modifier.weight(1f)) {
                 Text(
